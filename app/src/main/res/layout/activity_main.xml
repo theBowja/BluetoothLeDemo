@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4B000000"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bluetoothConn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClick"
+        android:text="@string/bluetooth_connection"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <Button
+        android:id="@+id/enableNotification"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClick"
+        android:text="@string/enable_notification"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothConn" />
+
+    <Button
+        android:id="@+id/sendPing"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClick"
+        android:text="@string/send_ping"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enableNotification" />
+
+    <Button
+        android:id="@+id/stopService"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onClick"
+        android:text="@string/stop_service"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendPing" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

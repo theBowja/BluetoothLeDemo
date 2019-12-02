@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BluetoothLeDemo</string>
+
+    <string name="disabled">Your device does not support Bluetooth</string>
+
+    <string name="title">Bluetooth Le Demo</string>
+    <string name="bluetooth_connection">Bluetooth connect</string>
+    <string name="enable_notification">Enable notification</string>
+    <string name="send_ping">Send ping</string>
+    <string name="stop_service">Stop service</string>
+
+    <string name="bluetooth_off">Your Bluetooth is not enabled</string>
+    <string name="no_device">No device currently connected</string>
+    <string name="title_currently_connected">Currently Connected</string>
+    <string name="title_available_devices">Available Devices</string>
+
+
+
+</resources>
