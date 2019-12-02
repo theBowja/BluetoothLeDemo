@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Register for broadcasts
         IntentFilter filter = new IntentFilter();
-        filter.addAction(BluetoothLeConnectionService.ACTION_DATA_AVAILABLE);
+        // TODO: filter by the action for there is data available
         registerReceiver(mReceiver, filter);
     }
 
@@ -101,12 +101,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            //Log.d(TAG, "onReceive intent: " + action);
 
             if(BluetoothLeConnectionService.ACTION_DATA_AVAILABLE.equals(action)) {
                 String msg = intent.getStringExtra(BluetoothLeConnectionService.EXTRA_DATA);
 
-                Toast.makeText(getApplicationContext(),"message received: " + msg, Toast.LENGTH_SHORT).show();
+                // TODO: toast
             }
 
         }

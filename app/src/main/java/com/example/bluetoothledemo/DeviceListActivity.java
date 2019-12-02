@@ -95,24 +95,21 @@ public class DeviceListActivity extends AppCompatActivity {
     }
 
     private void scanLeDevice(final boolean enable) {
-        // TODO: check if bluetooth is enabled
-
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Log.d(TAG, "Scan stopping 1");
-                    mBtAdapter.stopLeScan(mLeScanCallback);
+                    // TODO: stop scanning
                 }
             }, SCAN_PERIOD);
 
-            mBtAdapter.startLeScan(mLeScanCallback);
+            // TODO: start scanning
         } else {
             Log.d(TAG, "Scan stopping 2");
-            mBtAdapter.stopLeScan(mLeScanCallback);
+            // TODO: stop scanning
         }
-        invalidateOptionsMenu();
     }
 
     // Device scan callback. API < 21
@@ -124,11 +121,9 @@ public class DeviceListActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if(device != null) {
-                                //String deviceName = device.getName();
-                                //String deviceAddress = device.getAddress(); // MAC address
-                                //Log.d(TAG, "device found: " + deviceName + ", " + deviceAddress);
-                                mLeDeviceListAdapter.addDevice(device);
-                                mLeDeviceListAdapter.notifyDataSetChanged();
+                                // TODO: add new device to list
+
+                                // TODO: notify screen there is new device
                             }
                         }
                     });
@@ -147,13 +142,9 @@ public class DeviceListActivity extends AppCompatActivity {
 
             // Get the BluetoothDevice object
             BluetoothDevice btdevice = mLeDeviceListAdapter.getDevice(pos);
+            String address = btdevice.getAddress();
 
-            // Request the service to start the connection
-            Intent intent = new Intent();
-            intent.setAction(BluetoothLeConnectionService.GATT_START_CONNECTION);
-            intent.setClass(getApplicationContext(), BluetoothLeConnectionService.class);
-            intent.putExtra( "address", btdevice.getAddress() );
-            startService(intent);
+            // TODO: Request the service to start the connection
         }
     };
 

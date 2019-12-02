@@ -129,7 +129,7 @@ public class BluetoothLeConnectionService extends Service {
             case GATT_START_CONNECTION:
                 String address = intent.getStringExtra("address");
                 if(address != null) {
-                    boolean result = connect(address);
+                    boolean result = // TODO: call function
                     Log.d(TAG, "connect(...) "+ (result?"succeeded":"failed") +" initiation");
                 }
                 break;
@@ -142,7 +142,7 @@ public class BluetoothLeConnectionService extends Service {
                     if(message == null) {
                         Log.d(TAG, "message to write was null");
                     } else {
-                        boolean result = write(message);
+                        boolean result = // TODO: call function
                         Log.d(TAG, "write(...) "+ (result?"succeeded":"failed") +" initiation");
                     }
                 }
@@ -150,7 +150,7 @@ public class BluetoothLeConnectionService extends Service {
             case GATT_SET_NOTIFICATION:
                 if(mBluetoothGatt != null && mConnectionState == STATE_CONNECTED) {
                     boolean enabled = intent.getBooleanExtra("enabled", false);
-                    setNotification(enabled);
+                    // TODO: call function
                 }
                 break;
         }
@@ -224,10 +224,11 @@ public class BluetoothLeConnectionService extends Service {
                                             BluetoothGattCharacteristic characteristic) {
             Log.i(TAG, "onCharacteristicChanged called");
 
-            // filter by the characteristic we want to listen to
-            if(!CUSTOM_CHARACTERISTIC.equals(characteristic.getUuid())) return;
+            UUID uuid = characteristic.getUuid();
 
-            String value = new String(characteristic.getValue());
+            // TODO: filter by the characteristic we want to listen to
+
+            String value = // TODO: get the value from the characterstic
             Log.d(TAG, "VALUE GOT: " + value);
 
             final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
@@ -237,19 +238,21 @@ public class BluetoothLeConnectionService extends Service {
     };
 
     /**
-     * Set the notifications :3
+     * Set the notifications
+     *   subscribe :3
      * prerequisite: mBluetoothGatt != null
      */
     private void setNotification(boolean enable) {
         if(mBluetoothGatt == null) return;
 
-        BluetoothGattService mSVC = mBluetoothGatt.getService(CUSTOM_SERVICE);
-        BluetoothGattCharacteristic mCH = mSVC.getCharacteristic(CUSTOM_CHARACTERISTIC);
-        mBluetoothGatt.setCharacteristicNotification(mCH, enable);
+        // TODO: fill in missing parameters
+        BluetoothGattService mSVC = mBluetoothGatt.getService( ... );
+        BluetoothGattCharacteristic mCH = mSVC.getCharacteristic( ... );
+        mBluetoothGatt.setCharacteristicNotification(mCH, ... ); // sets notification locally on device
 
-        BluetoothGattDescriptor descriptor = mCH.getDescriptor(CUSTOM_CCCD);
+        BluetoothGattDescriptor descriptor = mCH.getDescriptor( ... );
         descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-        mBluetoothGatt.writeDescriptor(descriptor);
+        mBluetoothGatt.writeDescriptor(descriptor); // enable notification on server
     }
 
     /**
@@ -260,9 +263,11 @@ public class BluetoothLeConnectionService extends Service {
     private boolean write(String message) {
         if(mBluetoothGatt == null) return false;
 
-        BluetoothGattService mSVC = mBluetoothGatt.getService(CUSTOM_SERVICE);
-        BluetoothGattCharacteristic mCH = mSVC.getCharacteristic(CUSTOM_CHARACTERISTIC);
-        mCH.setValue(message);
+        // TODO: fill in missing parameters
+
+        BluetoothGattService mSVC = mBluetoothGatt.getService( ... );
+        BluetoothGattCharacteristic mCH = mSVC.getCharacteristic( ... );
+        mCH.setValue( ... );
         return mBluetoothGatt.writeCharacteristic(mCH);
     }
 
@@ -277,7 +282,9 @@ public class BluetoothLeConnectionService extends Service {
      *         callback.
      */
     private boolean connect(final String address) {
-        final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        // TODO: fill in missing parameters
+        final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice( ... );
+
         if (device == null) {
             Log.w(TAG, "Device not found.  Unable to connect.");
             return false;
@@ -300,6 +307,7 @@ public class BluetoothLeConnectionService extends Service {
 
         // We want to directly connect to the device, so we are setting the autoConnect parameter to false.
         mBluetoothGatt = device.connectGatt(this, true, mGattCallback);
+
         mBluetoothDeviceAddress = address;
         mConnectionState = STATE_CONNECTING;
         return true;
